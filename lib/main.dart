@@ -1,4 +1,8 @@
+import 'package:fc_project/data/local_data/local_storage.dart';
+import 'package:fc_project/data/model/signup.dart';
+import 'package:fc_project/data/service/auth_service.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 void main() {
   runApp(const MyApp());
@@ -116,7 +120,12 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
+        onPressed: () {
+          AuthImple().signUp(SignUpModel(
+              username: "aya1233",
+              password: "verysecretq",
+              password_confirmation: "verysecretq"));
+        },
         tooltip: 'Increment',
         child: const Icon(Icons.add),
       ), // This trailing comma makes auto-formatting nicer for build methods.
