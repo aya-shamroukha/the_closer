@@ -1,9 +1,12 @@
-import 'package:fc_project/data/models/user_model.dart';
+import 'package:fc_project/data/local_data/local_storge.dart';
+import 'package:fc_project/data/model/signup.dart';
 import 'package:fc_project/data/service/auth_service.dart';
-import 'package:fc_project/data/service/product_service.dart';
+import 'package:fc_project/presentation/screen/login.dart';
+import 'package:fc_project/presentation/screen/signup.dart';
 import 'package:flutter/material.dart';
 
-void main() {
+void main() async{
+  await initgetit();
   runApp(const MyApp());
 }
 
@@ -14,13 +17,10 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-      
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
-      ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      debugShowCheckedModeBanner: false,
+    
+      theme: ThemeData(primarySwatch: Colors.grey ),
+      home: LogIn()
     );
   }
 }
@@ -73,9 +73,14 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed:(){
-          ProductImple().pageList();
-          // AuthImple().logIn(UserModel(username: 'user1235',password: 'verysecret'));
+        // onPressed:(){
+        //   ProductImple().pageList();
+        //   // AuthImple().logIn(UserModel(username: 'user1235',password: 'verysecret'));
+        onPressed: () {
+          AuthImple().signUp(SignUpModel(
+              username: "aya1233",
+              password: "verysecretq",
+              password_confirmation: "verysecretq"));
         },
         tooltip: 'Increment',
         child: const Icon(Icons.add),
