@@ -1,4 +1,4 @@
-import 'package:fc_project/data/models/user_model.dart';
+import 'package:fc_project/data/models/auth_models/user_model.dart';
 import 'package:fc_project/data/service/auth_service.dart';
 import 'package:fc_project/presentation/const/colors.dart';
 import 'package:fc_project/presentation/widget/mybutton.dart';
@@ -57,7 +57,7 @@ TextEditingController usernameController=TextEditingController();
               Switch(
                 value: false, onChanged: (vaule){})
             ],),
-       SizedBox_Height(height: 100,),
+       SizedBox_Height(height: 140,),
           Container(
             alignment: Alignment.bottomCenter,
            

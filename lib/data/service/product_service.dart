@@ -1,11 +1,13 @@
 import 'package:dio/dio.dart';
-import 'package:fc_project/data/models/add_discount.dart';
-import 'package:fc_project/data/models/page_list_model.dart';
-import 'package:fc_project/data/models/purchase_model.dart';
-import 'package:fc_project/data/models/update2_model.dart';
+import 'package:fc_project/data/local_data/local_storage.dart';
+import 'package:fc_project/data/models/produt_models/add_discount.dart';
+import 'package:fc_project/data/models/produt_models/page_list_model.dart';
+import 'package:fc_project/data/models/produt_models/purchase_model.dart';
+import 'package:fc_project/data/models/produt_models/update2_model.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 abstract class ProductService{
-ProductPageListrdModel  list();
+list();
   ProductPageListrdModel pageList();
   add();
   upDate(ProductPageListrdModel update);
@@ -42,7 +44,15 @@ class ProductImple extends ProductService{
   @override
   list()async {
    Dio dio =Dio();
-      Response response=await dio.get('http://172.16.40.84:8000/api/product');
+      Response response=await dio.get('http://172.16.40.84:8000/api/product',
+      options: Options(
+        headers: {
+          "Accept-Language":"ar",
+          "Accept":"application/json",
+          "Authorization":"Bearer ${myMagic.get<SharedPreferences>().getString('token')}"
+        }
+      )
+      );
       if (response.statusCode==200){
         return response.data;
       }

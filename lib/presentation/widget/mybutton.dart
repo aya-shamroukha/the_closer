@@ -26,7 +26,7 @@ Widget myButton(dynamic onPressed,String text){
             onPressed();
           },
           color: firstcolor,
-          height: 100,
+          height: 75,
           minWidth: double.infinity,
           child:  Text(text,style: TextStyle(color: Colors.white,fontSize: 17),),);
   

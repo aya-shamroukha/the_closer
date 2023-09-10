@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:fc_project/data/local_data/local_storge.dart';
-import 'package:fc_project/data/model/signup.dart';
-import 'package:fc_project/data/models/user_model.dart';
+import 'package:fc_project/data/models/auth_models/signup.dart';
+import 'package:fc_project/data/models/auth_models/user_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 abstract class AuthService {
@@ -41,9 +41,10 @@ class AuthImple extends AuthService {
     if (req.statusCode == 200) {
       print(req.data['data']['token']);
       myMagic.get<SharedPreferences>().setString(
-          'token', '12|240I1J0459iH51WdpgogVLGTleS8zRWfKAqwrVmI20dc3431');
-      return req.data;
+          'token', req.data['data']['token']);
+      return true;
     }
+    else {return false;}
   }
   
   @override

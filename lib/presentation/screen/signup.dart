@@ -1,4 +1,4 @@
-import 'package:fc_project/data/model/signup.dart';
+import 'package:fc_project/data/models/auth_models/signup.dart';
 import 'package:fc_project/data/service/auth_service.dart';
 import 'package:fc_project/presentation/const/colors.dart';
 import 'package:fc_project/presentation/widget/mybutton.dart';
@@ -11,9 +11,6 @@ class SignUp extends StatelessWidget {
    SignUp({super.key});
          
 GlobalKey<FormState>formstate= GlobalKey<FormState>();
- TextEditingController emailController=TextEditingController();
- TextEditingController passwordController=TextEditingController();
-TextEditingController usernameController=TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +21,6 @@ TextEditingController usernameController=TextEditingController();
         SingleChildScrollView(
           child: Column(
             children: [
-           
           const  SizedBox_Height(height: 50),
             Center(child:
              Text('Sign Up',style: TextStyle(color: topTextcolor,fontSize: 28,fontWeight: FontWeight.w600),)),
@@ -37,10 +33,7 @@ TextEditingController usernameController=TextEditingController();
               padding: const EdgeInsets.all(10),
               child:PasswordTextField()
             ),
-            Padding(
-              padding: const EdgeInsets.all(10),
-              child:EmailTextField(),
-            ),
+          
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               
@@ -49,22 +42,26 @@ TextEditingController usernameController=TextEditingController();
               Switch(
                 value: false, onChanged: (vaule){})
             ],),
-      
+        const  SizedBox_Height(height: 100),
           Container(
             alignment: Alignment.bottomCenter,
             width: double.infinity,
             height: 75,
-            child: myButton((){
+            child: myButton(()async{
              var formdata=formstate.currentState;
         if(formdata!.validate()){
           print('object');
          
           
-        }AuthImple().signUp(SignUpModel(
+        } 
+        var data= await AuthImple().signUp(SignUpModel(
               username:usernameController.text ,
               password: passwordController.text,
-              password_confirmation: passwordController.text));
-              Navigator.of(context).pushNamed('login');
+              password_confirmation: passwordconfirmation.text));
+               if(data) {
+
+              Navigator.of(context).pushNamed('homepage');
+               }
             },'Sign Up'),
           ),
           ],),

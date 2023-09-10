@@ -1,6 +1,4 @@
 import 'package:fc_project/data/local_data/local_storge.dart';
-import 'package:fc_project/data/model/signup.dart';
-import 'package:fc_project/data/service/auth_service.dart';
 import 'package:fc_project/presentation/screen/homepage.dart';
 import 'package:fc_project/presentation/screen/login.dart';
 import 'package:fc_project/presentation/screen/signup.dart';
@@ -21,9 +19,10 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
     
       theme: ThemeData(primarySwatch: Colors.grey ),
-      home: HomePage(),
+      home: SignUp(),
       routes: {
-        "login":(context) => LogIn()
+        "login":(context) => LogIn(),
+        "homepage":(context) => HomePage()
       },
     );
   }
