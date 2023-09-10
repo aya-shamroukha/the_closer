@@ -7,9 +7,18 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class HomePage extends StatelessWidget {
-  const HomePage({super.key});
+   HomePage({super.key});
 
+List image=[{
+    'image':'assets/1 (2).png',
+  
+  },{'image':'assets/2 (2).png',},
+  {'image':'assets/3 (2).png',},
+  {'image':'assets/4 (2).png',}]
+  
+  ;
   @override
+  
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => ProductBloc(ProductImple())..add(GetProduct()),
@@ -90,13 +99,26 @@ class HomePage extends StatelessWidget {
                     scrollDirection: Axis.vertical,
                     gridDelegate:SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2), 
                     itemBuilder: (context,index){
-                      return Container(child: 
-                      Column(
-                        children: [
-                          Text('${productlist[index].title}'),
-                        ],
-                      )
-                      ,);
+                      return Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Container(
+                          width: 160,
+                          height: 257,
+                          decoration: BoxDecoration(
+                            color: Colors.grey.withOpacity(0.2),
+                            borderRadius: BorderRadius.circular(15)),
+                          child: 
+                        Column(
+                          children: [
+                            ClipRRect(child:
+                              Image.asset('images/1.png',width: 160,fit: BoxFit.fill,),
+                            ),
+                           
+                            Text('${productlist[index].title}'),
+                          ],
+                        )
+                        ,),
+                      );
                     }
                     ));
                 }
@@ -108,30 +130,6 @@ class HomePage extends StatelessWidget {
               }
               ,
             )
-            // FutureBuilder(
-            //     future: ProductImple().list(),
-            //     builder: (context, snapshot) {
-            //       if (snapshot.hasData) {
-            //         dynamic data = snapshot.data;
-            //         List<ProductPageListrdModel> finaldata = List.generate(
-            //             data['data'].length,
-            //             (index) => ProductPageListrdModel.fromMap(
-            //                 data['data'][index]));
-            //         print(finaldata);
-            //         return Container(
-            //           child: Column(
-            //             children: [
-            //               Image.asset('asset/1 (2).png'),
-            //               Text(' ${finaldata[0].description}')
-            //             ],
-            //           ),
-            //         );
-            //       } else {
-            //         return Center(
-            //           child: CircularProgressIndicator(),
-            //         );
-            //       }
-            //     })
           ],
         )),
       ),
