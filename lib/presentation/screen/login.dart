@@ -57,11 +57,10 @@ TextEditingController usernameController=TextEditingController();
               Switch(
                 value: false, onChanged: (vaule){})
             ],),
-      
+       SizedBox_Height(height: 100,),
           Container(
             alignment: Alignment.bottomCenter,
-            width: double.infinity,
-            height: 75,
+           
             child: myButton((){
              var formdata=formstate.currentState;
         if(formdata!.validate()){

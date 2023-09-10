@@ -59,7 +59,7 @@ GlobalKey<FormState>formstate= GlobalKey<FormState>();
   Widget build(BuildContext context) {
     return Form(
       child: TextFormField(
-       // autovalidateMode: AutovalidateMode.always,
+      //  autovalidateMode: AutovalidateMode.always,
         key: formstate,
         validator: (text){
           if(passwordController.text.length<4){

@@ -64,6 +64,7 @@ TextEditingController usernameController=TextEditingController();
               username:usernameController.text ,
               password: passwordController.text,
               password_confirmation: passwordController.text));
+              Navigator.of(context).pushNamed('login');
             },'Sign Up'),
           ),
           ],),
