@@ -21,6 +21,7 @@ class UnfriendBloc extends Bloc<UnfriendEvent, UnfriendState> {
        var friend=await _userimpl.Friend();
                      List<FriendModel> finaldata = List.generate(friend['data'].length, (index) => FriendModel.fromMap(friend['data'][index]));
 
+
            emit(SuccessFriendState( friend:friend ));
 
 
