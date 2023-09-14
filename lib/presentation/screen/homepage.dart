@@ -1,21 +1,25 @@
+// ignore_for_file: must_be_immutable
+
 import 'package:fc_project/data/models/produt_models/page_list_model.dart';
 import 'package:fc_project/data/service/product_service.dart';
-import 'package:fc_project/domain/bloc/bloc/product_bloc.dart';
+import 'package:fc_project/domain/bloc/product_bloc/bloc/product_bloc.dart';
 import 'package:fc_project/presentation/const/colors.dart';
+import 'package:fc_project/presentation/const/theme.dart';
+import 'package:fc_project/presentation/widget/mycontainer.dart';
 import 'package:fc_project/presentation/widget/mysizedbox.dart';
+import 'package:fc_project/presentation/widget/searchtextfield.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class HomePage extends StatelessWidget {
    HomePage({super.key});
-
+//    
 List image=[{
     'image':'assets/1 (2).png',
   
   },{'image':'assets/2 (2).png',},
   {'image':'assets/3 (2).png',},
   {'image':'assets/4 (2).png',}]
-  
   ;
   @override
   
@@ -31,26 +35,29 @@ List image=[{
             const SizedBox_Height(
               height: 30,
             ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Container(
-                      width: 45,
-                      height: 45,
-                      decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          color: textfeildcolor.withOpacity(0.2)),
-                      child: Icon(Icons.menu)),
-                  Container(
-                      width: 45,
-                      height: 45,
-                      decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          color: textfeildcolor.withOpacity(0.2)),
-                      child: Icon(Icons.badge_outlined))
-                ],
+             Padding(
+              padding: EdgeInsets.all(8.0),
+              child: StatefulBuilder(
+                builder: (context,setstate){
+                  return  Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    InkWell(
+                      onTap: (){
+                        setstate(() {
+                          iconBool=!iconBool;
+                        },);
+                      },
+                      child: MyContainer(icon: Icon(iconBool?iconDark:iconLight,color: iconBool?Colors.black:Colors.yellow,))),
+                 InkWell(
+                  onTap: (){
+                    Navigator.of(context).pushNamed('friend');
+                  },
+                  child: const    MyContainer(icon: Icon(Icons.badge_outlined))),
+                  ],
+                );
+                },
+               
               ),
             ),
             Padding(
@@ -72,38 +79,25 @@ List image=[{
                 ],
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: TextField(
-                decoration: InputDecoration(
-                  prefixIcon: Icon(Icons.search),
-                  hintText: 'Search:',
-                  fillColor: searchcolor,
-                  focusedBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: searchcolor),
-                      borderRadius: BorderRadius.circular(10)),
-                  enabledBorder: OutlineInputBorder(
-                      borderSide:
-                          BorderSide(color: Colors.grey.withOpacity(0.4)),
-                      borderRadius: BorderRadius.circular(10)),
-                ),
-              ),
+            const Padding(
+              padding: EdgeInsets.all(8.0),
+              child: SearchTextField(),
             ),
             BlocBuilder<ProductBloc, ProductState>(
               builder: (context, state) {
                 if(state is SuccessState){
-                  List<ProductPageListrdModel> productlist=state.listproduct;
+                  List<ProductPageListModel> productlist=state.listproduct;
                   return Expanded(child: 
                   GridView.builder(
                     itemCount:productlist.length ,
                     scrollDirection: Axis.vertical,
-                    gridDelegate:SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2), 
+                    gridDelegate:const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2), 
                     itemBuilder: (context,index){
                       return Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Container(
                           width: 160,
-                          height: 257,
+                          height: 200,
                           decoration: BoxDecoration(
                             color: Colors.grey.withOpacity(0.2),
                             borderRadius: BorderRadius.circular(15)),
@@ -114,7 +108,7 @@ List image=[{
                               Image.asset('images/1.png',width: 160,fit: BoxFit.fill,),
                             ),
                            
-                            Text('${productlist[index].title}'),
+                            Text(productlist[index].title,style: TextStyle(color: firstcolor,fontSize: 17),),
                           ],
                         )
                         ,),
@@ -123,9 +117,9 @@ List image=[{
                     ));
                 }
                else if(state is ErrorState){
-                return Text('error');
+                return const Text('error');
               
-              }else{return Text('data');}
+              }else{return const Center(child: CircularProgressIndicator(),);}
 
               }
               ,
@@ -136,3 +130,6 @@ List image=[{
     );
   }
 }
+
+
+

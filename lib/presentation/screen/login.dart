@@ -1,3 +1,5 @@
+// ignore_for_file: must_be_immutable
+
 import 'package:fc_project/data/models/auth_models/user_model.dart';
 import 'package:fc_project/data/service/auth_service.dart';
 import 'package:fc_project/presentation/const/colors.dart';
@@ -9,11 +11,10 @@ import 'package:flutter/material.dart';
 class LogIn extends StatelessWidget {
    LogIn({super.key});
   GlobalKey<FormState>formstate= GlobalKey<FormState>();
- TextEditingController emailController=TextEditingController();
- TextEditingController passwordController=TextEditingController();
-TextEditingController usernameController=TextEditingController();
+ TextEditingController passwordController1=TextEditingController();
+TextEditingController usernameController1=TextEditingController();
 
-
+bool is_switch=false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -30,7 +31,7 @@ TextEditingController usernameController=TextEditingController();
               Text('Please enter your data to continue',
               style: TextStyle(color: textfeildcolor.withOpacity(0.7),fontSize:15),),
 
-            const  SizedBox_Height(height: 150),
+            const  SizedBox_Height(height: 100),
             Padding(
               padding: const EdgeInsets.all(10),
               child: UsernameTextField()
@@ -42,10 +43,10 @@ TextEditingController usernameController=TextEditingController();
            Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
              children: [
-              SizedBox_width(width: 20,),
+              const SizedBox_width(width: 20,),
                Padding(
                  padding: const EdgeInsets.all(8.0),
-                 child: Text('Forgot password?',style: TextStyle(color: redColor,fontSize: 15),),
+                 child: Text('Forgot password?',style: TextStyle(color: firstcolor,fontSize: 15),),
                ),
              ],
            ),
@@ -53,11 +54,14 @@ TextEditingController usernameController=TextEditingController();
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               
               children: [
-             const Text('Remember me'),
+              Text('Remember me',),
               Switch(
-                value: false, onChanged: (vaule){})
+                activeColor: checkColor,
+                value: is_switch, onChanged: (vaule){
+                  is_switch=vaule;
+                })
             ],),
-       SizedBox_Height(height: 140,),
+        SizedBox_Height(height: MediaQuery.of(context).size.height*0.18,),
           Container(
             alignment: Alignment.bottomCenter,
            
@@ -67,14 +71,14 @@ TextEditingController usernameController=TextEditingController();
           print('object');
          
           
-        }AuthImple().logIn(UserModel(username: usernameController.text,
-        password: passwordController.text
+        }AuthImple().logIn(UserModel(username: usernameController1.text,
+        password: passwordController1.text
             ));
-            },'Login'),
+            },'Login',double.infinity,75),
           ),
           ],),
         )),
       ),
-    );;
+    );
   }
 }

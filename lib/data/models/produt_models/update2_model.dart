@@ -40,14 +40,14 @@ class ProductUpDate2Model {
   @override
   String toString() => 'ProductUpDate2Model(data: $data, message: $message)';
 
-  @override
-  bool operator ==(covariant ProductUpDate2Model other) {
-    if (identical(this, other)) return true;
+  // @override
+  // bool operator ==(covariant ProductUpDate2Model other) {
+  //   if (identical(this, other)) return true;
   
-    return 
-      other.data == data &&
-      other.message == message;
-  }
+  //   return 
+  //     other.data == data &&
+  //     other.message == message;
+  // }
 
   // @override
   // int get hashCode => data.hashCode ^ message.hashCode;

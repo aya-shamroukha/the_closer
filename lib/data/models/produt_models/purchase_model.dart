@@ -1,4 +1,4 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
+// ignore_for_file: public_member_api_docs, sort_constructors_first, non_constant_identifier_names
 import 'dart:convert';
 
 class ProductPurchaseModel {
@@ -40,14 +40,14 @@ class ProductPurchaseModel {
   @override
   String toString() => 'ProductPurchaseModel(quantity: $quantity, product_id: $product_id)';
 
-  @override
-  bool operator ==(covariant ProductPurchaseModel other) {
-    if (identical(this, other)) return true;
+  // @override
+  // bool operator ==(covariant ProductPurchaseModel other) {
+  //   if (identical(this, other)) return true;
   
-    return 
-      other.quantity == quantity &&
-      other.product_id == product_id;
-  }
+  //   return 
+  //     other.quantity == quantity &&
+  //     other.product_id == product_id;
+  // }
 
   // @override
   // int get hashCode => quantity.hashCode ^ product_id.hashCode;

@@ -1,5 +1,5 @@
 import 'package:dio/dio.dart';
-import 'package:fc_project/data/local_data/local_storge.dart';
+import 'package:fc_project/data/local_data/local_storage.dart';
 import 'package:fc_project/data/models/auth_models/signup.dart';
 import 'package:fc_project/data/models/auth_models/user_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -20,7 +20,7 @@ class AuthImple extends AuthService {
   logIn(UserModel data)async {
     Dio dio=Dio();
      
-    Response response=await dio.post('http://172.16.40.84:8000/api/signin',data: data.toJson());
+    Response response=await dio.post('http://192.168.43.91:8000/api/signin',data: data.toJson());
     
     if (response.statusCode==200){
       print(response.data['data']['token']);
@@ -36,7 +36,7 @@ class AuthImple extends AuthService {
   @override
   signUp(SignUpModel data) async {
     Dio dio = Dio();
-    Response req = await dio.post("http://172.16.40.84:8000/api/signup",
+    Response req = await dio.post("http://192.168.43.91:8000/api/signup",
         data: data.toJson());
     if (req.statusCode == 200) {
       print(req.data['data']['token']);
@@ -49,7 +49,7 @@ class AuthImple extends AuthService {
   
   @override
   logOut() {
-    // TODO: implement logOut
+   
     throw UnimplementedError();
   }
 }

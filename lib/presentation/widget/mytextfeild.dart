@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors, non_constant_identifier_names, must_be_immutable
+// ignore_for_file: prefer_const_constructors, non_constant_identifier_names, must_be_immutable, body_might_complete_normally_nullable
 
 
 import 'package:fc_project/presentation/const/colors.dart';
@@ -11,16 +11,7 @@ class UsernameTextField extends StatelessWidget {
    UsernameTextField({
     super.key,
   });
-
-
 GlobalKey<FormState>formstate= GlobalKey<FormState>();
-// send(){
-//       var formdata=formstate.currentState;
-//       if(formdata!.validate()){
-//         print('yes');
-        
-//       }
-//     }
   @override
   Widget build(BuildContext context) {
     return Form(
@@ -32,8 +23,8 @@ GlobalKey<FormState>formstate= GlobalKey<FormState>();
             decoration: 
             InputDecoration(
               border: UnderlineInputBorder(),
-              labelText: 'Username',
-              labelStyle: TextStyle(color: textfeildcolor , fontSize: 13,),
+              labelText: 'Username:',
+              labelStyle: TextStyle(color:textfeildcolor, fontSize: 14,),
              
               
               
@@ -61,7 +52,7 @@ GlobalKey<FormState>formstate= GlobalKey<FormState>();
                 autovalidateMode: AutovalidateMode.always,
                 key: formstate,
                 validator: (text){
-                  if( 0<passwordController.text.length && passwordController.text.length<4){
+                  if( passwordController.text.isNotEmpty && passwordController.text.length<4){
                     
                     return" too short";
                   
@@ -87,17 +78,17 @@ GlobalKey<FormState>formstate= GlobalKey<FormState>();
                       suffixText:  (is_weak)? 'weak':'strong' ,
                     suffixStyle: TextStyle(color: (is_weak)?Colors.red:checkColor),
                       border: UnderlineInputBorder(),
-                      labelText: 'Password',
-                      labelStyle: TextStyle(color: textfeildcolor , fontSize: 13,),
+                      labelText: 'Password:',
+                      labelStyle: TextStyle(color: textfeildcolor , fontSize: 14,),
                     ),
               ),
                TextFormField(
                 onChanged:(val){
-                  if(val.length != passwordController.text.length)
-                  setstate((){
+                  if(passwordconfirmation.text!= passwordController.text) {
+                    setstate((){
                     is_match=true;
                   });
-                   else {
+                  } else {
                        setstate((){
 
                     is_match = false;
@@ -106,8 +97,8 @@ GlobalKey<FormState>formstate= GlobalKey<FormState>();
                 } ,
         autovalidateMode: AutovalidateMode.always,      
         validator: (text){
-          if(text!.length != passwordController.text.length){
-            print(passwordController.text);
+          if(passwordconfirmation.text!= passwordController.text){
+           // print(passwordController.text);
                   return ' Password is not identical';
           }
         },
@@ -116,9 +107,9 @@ GlobalKey<FormState>formstate= GlobalKey<FormState>();
              cursorColor: textfeildcolor,
             decoration: 
             InputDecoration(
-              suffix:Icon(is_match?Icons.exit_to_app:Icons.check,color:is_match?Colors.white:checkColor) ,
+              suffix:Icon(is_match?Icons.check:Icons.check,color:is_match?Colors.white:checkColor) ,
               border: UnderlineInputBorder(),
-              labelText: 'Password confirmation',
+              labelText: 'Password confirmation:',
               labelStyle: TextStyle(color: textfeildcolor , fontSize: 13,),
             ),
       ),

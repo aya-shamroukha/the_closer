@@ -1,25 +1,25 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
+// ignore_for_file: public_member_api_docs, sort_constructors_first, non_constant_identifier_names
 import 'dart:convert';
 
-class ProductPageListrdModel {
+class ProductPageListModel {
   String title;
   String description;
   int product_id;
   int language_id;
-  ProductPageListrdModel({
+  ProductPageListModel({
     required this.title,
     required this.description,
     required this.product_id,
     required this.language_id,
   });
 
-  ProductPageListrdModel copyWith({
+  ProductPageListModel copyWith({
     String? title,
     String? description,
     int? product_id,
     int? language_id,
   }) {
-    return ProductPageListrdModel(
+    return ProductPageListModel(
       title: title ?? this.title,
       description: description ?? this.description,
       product_id: product_id ?? this.product_id,
@@ -36,8 +36,8 @@ class ProductPageListrdModel {
     };
   }
 
-  factory ProductPageListrdModel.fromMap(Map<String, dynamic> map) {
-    return ProductPageListrdModel(
+  factory ProductPageListModel.fromMap(Map<String, dynamic> map) {
+    return ProductPageListModel(
       title: map['title'] as String,
       description: map['description'] as String,
       product_id: map['product_id'] as int,
@@ -47,15 +47,15 @@ class ProductPageListrdModel {
 
   String toJson() => json.encode(toMap());
 
-  factory ProductPageListrdModel.fromJson(String source) => ProductPageListrdModel.fromMap(json.decode(source) as Map<String, dynamic>);
+  factory ProductPageListModel.fromJson(String source) => ProductPageListModel.fromMap(json.decode(source) as Map<String, dynamic>);
 
   @override
   String toString() {
-    return 'ProductPageListrdModel(title: $title, description: $description, product_id: $product_id, language_id: $language_id)';
+    return 'ProductPageListModel(title: $title, description: $description, product_id: $product_id, language_id: $language_id)';
   }
 
   @override
-  bool operator ==(covariant ProductPageListrdModel other) {
+  bool operator ==(covariant ProductPageListModel other) {
     if (identical(this, other)) return true;
   
     return 

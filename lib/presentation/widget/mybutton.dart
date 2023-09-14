@@ -19,16 +19,16 @@ import 'package:flutter/material.dart';
 //           child:  Text(text,style: TextStyle(color: Colors.white,fontSize: 17),),);
 //   }
 // }
-Widget myButton(dynamic onPressed,String text){
+Widget myButton(dynamic onPressed,String text,double width,double height){
   
   return MaterialButton(
           onPressed: (){
             onPressed();
           },
           color: firstcolor,
-          height: 75,
-          minWidth: double.infinity,
-          child:  Text(text,style: TextStyle(color: Colors.white,fontSize: 17),),);
+          height: height,
+          minWidth: width,
+          child:  Text(text,style: const TextStyle(color: Colors.white,fontSize: 17),),);
   
   
 }

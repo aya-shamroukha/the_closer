@@ -1,4 +1,4 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
+// ignore_for_file: public_member_api_docs, sort_constructors_first, non_constant_identifier_names
 import 'dart:convert';
 
 class ProductUpDate {
@@ -78,20 +78,20 @@ class ProductUpDate {
     return 'ProductUpDate(title: $title, image: $image, description: $description, page_id: $page_id, price: $price, quantity: $quantity, intprofit: $intprofit, local: $local)';
   }
 
-  @override
-  bool operator ==(covariant ProductUpDate other) {
-    if (identical(this, other)) return true;
+  // @override
+  // bool operator ==(covariant ProductUpDate other) {
+  //   if (identical(this, other)) return true;
   
-    return 
-      other.title == title &&
-      other.image == image &&
-      other.description == description &&
-      other.page_id == page_id &&
-      other.price == price &&
-      other.quantity == quantity &&
-      other.intprofit == intprofit &&
-      other.local == local;
-  }
+  //   return 
+  //     other.title == title &&
+  //     other.image == image &&
+  //     other.description == description &&
+  //     other.page_id == page_id &&
+  //     other.price == price &&
+  //     other.quantity == quantity &&
+  //     other.intprofit == intprofit &&
+  //     other.local == local;
+  // }
 
   // @override
   // int get hashCode {
